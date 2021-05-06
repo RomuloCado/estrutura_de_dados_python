@@ -49,7 +49,12 @@ class Pilha:
       else:
           return -1
 
-
+  def printa_pilha(self):
+        if self.topo == -1:
+            print('Pilha vazia')
+        else:
+            for i in range(self.retorna_topo() + 1):
+                print(self.valores[i], end=" ")
 while(1):
     cont = 0
     frase = str(input('Digite uma expressão: '))
@@ -61,14 +66,14 @@ while(1):
     print('Frase sem . de final reescreva delimitando seu final')
 
 pilha = Pilha(len(frase))
-frase_ivertida = ''
+pilha_invertida = Pilha(len(frase))
 
 for i in frase:
     if i == ' ' or i == '.':
         for j in range(pilha.retorna_topo() + 1):
-            frase_ivertida += pilha.ver_topo()
+            pilha_invertida.empilhar(pilha.ver_topo())
             pilha.desempilhar()
-        frase_ivertida += ' '
     pilha.empilhar(i)
 
-print(frase_ivertida)
+pilha_invertida.printa_pilha()
+
